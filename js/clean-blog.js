@@ -1,5 +1,7 @@
-// Floating label headings for the contact form
-$(function() {
+(function($) {
+    "use strict"; // Start of use strict
+
+    // Floating label headings for the contact form
     $("body").on("input propertychange", ".floating-label-form-group", function(e) {
         $(this).toggleClass("floating-label-form-group-with-value", !!$(e.target).val());
     }).on("focus", ".floating-label-form-group", function() {
@@ -7,15 +9,13 @@ $(function() {
     }).on("blur", ".floating-label-form-group", function() {
         $(this).removeClass("floating-label-form-group-with-focus");
     });
-});
 
-// Navigation Scripts to Show Header on Scroll-Up
-jQuery(document).ready(function($) {
+    // Show the navbar when the page is scrolled up
     var MQL = 1170;
 
     //primary navigation slide-in effect
     if ($(window).width() > MQL) {
-        var headerHeight = $('.navbar-custom').height();
+        var headerHeight = $('#mainNav').height();
         $(window).on('scroll', {
                 previousTop: 0
             },
@@ -24,17 +24,18 @@ jQuery(document).ready(function($) {
                 //check if user is scrolling up
                 if (currentTop < this.previousTop) {
                     //if scrolling up...
-                    if (currentTop > 0 && $('.navbar-custom').hasClass('is-fixed')) {
-                        $('.navbar-custom').addClass('is-visible');
+                    if (currentTop > 0 && $('#mainNav').hasClass('is-fixed')) {
+                        $('#mainNav').addClass('is-visible');
                     } else {
-                        $('.navbar-custom').removeClass('is-visible is-fixed');
+                        $('#mainNav').removeClass('is-visible is-fixed');
                     }
                 } else if (currentTop > this.previousTop) {
                     //if scrolling down...
-                    $('.navbar-custom').removeClass('is-visible');
-                    if (currentTop > headerHeight && !$('.navbar-custom').hasClass('is-fixed')) $('.navbar-custom').addClass('is-fixed');
+                    $('#mainNav').removeClass('is-visible');
+                    if (currentTop > headerHeight && !$('#mainNav').hasClass('is-fixed')) $('#mainNav').addClass('is-fixed');
                 }
                 this.previousTop = currentTop;
             });
     }
-});
+
+})(jQuery); // End of use strict
